@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Fashion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            width: 200px;
+            height: 150px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Men's Fashion Categories</h1>
+    <div class="container">
+        <div class="card" onclick="window.location.href='tshirt.html'"><p>T-shirt</p></div>
+        <div class="card" onclick="window.location.href='shirt.html'"><p>Shirt</p></div>
+        <div class="card" onclick="window.location.href='jeans.html'"><p>Jeans</p></div>
+        <div class="card" onclick="window.location.href='western_wear.html'"><p>Western Wear</p></div>
+        <div class="card" onclick="window.location.href='footwear.html'"><p>Footwear</p></div>
+        <div class="card" onclick="window.location.href='accessories.html'"><p>Accessories</p></div>
+        <div class="card" onclick="window.location.href='precious_jewellery.html'"><p>Precious Jewellery</p></div>
+        <div class="card" onclick="window.location.href='ethnic_festive.html'"><p>Ethnic & Festive Collection</p></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        .card {
+            position: relative;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .card h2 {
+            margin: 0 0 15px;
+        }
+        .card input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .card button, .card a {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .card button:hover, .card a:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #28a745;
+        }
+        .back-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <a href=".html" class="back-button">Back</a>
+        <h2>Account Information</h2>
+        <label for="holder-name">Account Holder:</label>
+        <input type="text" id="holder-name">
+        <label for="account-number">Account Number:</label>
+        <input type="text" id="account-number">
+        <label for="current-balance">Current Balance:</label>
+        <input type="text" id="current-balance" disabled>
+        <button onclick="checkBalance()">Check Balance</button>
+        <button onclick="creditAmount()">Credit Amount</button>
+        <button onclick="debitAmount()">Debit Amount</button>
+    </div>
+</div>
+
+<script>
+    const accountInfo = {
+        holderName: 'Uday kumar',
+        accountNumber: '1234567890',
+        pin: '1234', 
+        balance: 0
+    };
+
+    function checkBalance() {
+        document.getElementById('current-balance').value = formatCurrency(accountInfo.balance);
+    }
+
+    function creditAmount() {
+        const amount = prompt('Enter the amount to credit:');
+        const parsedAmount = parseFloat(amount);
+
+        if (isNaN(parsedAmount) || parsedAmount <= 0) {
+            alert('Please enter a valid amount.');
+        } else {
+            accountInfo.balance += parsedAmount;
+            checkBalance();
+            alert('Amount credited: ₹' + parsedAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+        }
+    }
+
+    function debitAmount() {
+        const amount = prompt('Enter the amount to debit:');
+        const parsedAmount = parseFloat(amount);
+
+        if (isNaN(parsedAmount) || parsedAmount <= 0) {
+            alert('Please enter a valid amount.');
+        } else if (parsedAmount > accountInfo.balance) {
+            alert('Insufficient balance.');
+        } else {
+            accountInfo.balance -= parsedAmount;
+            checkBalance();
+            alert('Amount debited: ₹' + parsedAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+        }
+    }
+
+    function formatCurrency(amount) {
+        return `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+
+    document.getElementById('holder-name').value = accountInfo.holderName;
+    document.getElementById('account-number').value = accountInfo.accountNumber;
+    checkBalance();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; 
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%; 
+            height: 500px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .carousel-images {
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            border-radius: 8px;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(-50%);
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            width: 200px;
+            height: 150px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="shopimg/1.webp" alt="Image 1">
+            <img src="shopimg/2.jpg" alt="Image 2">
+            <img src="shopimg/3.webp" alt="Image 3">
+        </div>
+        <button class="carousel-button prev">&#10094;</button>
+        <button class="carousel-button next">&#10095;</button>
+    </div>
+
+    <div class="cards">
+        <div class="card" onclick="window.location.href='men.html'">Men</div>
+        <div class="card" onclick="window.location.href='women.html'">Women</div>
+        <div class="card" onclick="window.location.href='kids.html'">Kids</div>
+    </div>
+
+    <script>
+        const carouselImages = document.querySelector('.carousel-images');
+        const images = document.querySelectorAll('.carousel-images img');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        
+        let index = 0;
+
+        function showImage(index) {
+            const imageWidth = images[0].clientWidth;
+            carouselImages.style.transform = `translateX(${-index * imageWidth}px)`;
+        }
+
+        prevButton.addEventListener('click', () => {
+            index = (index > 0) ? index - 1 : images.length - 1;
+            showImage(index);
+        });
+
+        nextButton.addEventListener('click', () => {
+            index = (index < images.length - 1) ? index + 1 : 0;
+            showImage(index);
+        });
+
+        setInterval(() => {
+            index = (index < images.length - 1) ? index + 1 : 0;
+            showImage(index);
+        }, 3000);
+    </script>
+</body>
+</html>

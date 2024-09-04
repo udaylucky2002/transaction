@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+            gap: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .card h2 {
+            margin: 0 0 15px;
+        }
+        .card button, .card a {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .card button:hover, .card a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Account Details</h2>
+        <button onclick="viewAccountDetails()">View Account Details</button>
+    </div>
+    <div class="card">
+        <h2>Credit</h2>
+        <button onclick="creditAmount()">Credit Amount</button>
+    </div>
+    <div class="card">
+        <h2>Debit</h2>
+        <button onclick="debitAmount()">Debit Amount</button>
+    </div>
+</div>
+
+<script>
+    function viewAccountDetails() {
+        const pin = prompt('Enter your PIN:');
+        if (pin === '1234') {
+            window.location.href = 'account-info.html';
+        } else {
+            alert('Incorrect PIN.');
+        }
+    }
+
+    function creditAmount() {
+        const amount = prompt('Enter the amount to credit:');
+        const parsedAmount = parseFloat(amount);
+
+        if (isNaN(parsedAmount) || parsedAmount <= 0) {
+            alert('Please enter a valid amount.');
+        } else {
+            alert('Amount credited: ₹' + parsedAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+        }
+    }
+
+    function debitAmount() {
+        const amount = prompt('Enter the amount to debit:');
+        const parsedAmount = parseFloat(amount);
+
+        if (isNaN(parsedAmount) || parsedAmount <= 0) {
+            alert('Please enter a valid amount.');
+        } else {
+            alert('Amount debited: ₹' + parsedAmount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+        }
+    }
+</script>
+
+</body>
+</html>
